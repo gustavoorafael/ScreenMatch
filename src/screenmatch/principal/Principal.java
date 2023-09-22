@@ -1,3 +1,5 @@
+package screenmatch.principal;
+
 import screenmatch.calculo.CalculadoraDeTempo;
 import screenmatch.calculo.FiltroRecomendacao;
 import screenmatch.modelos.Episodio;
@@ -9,9 +11,7 @@ import java.util.ArrayList;
 
 public class Principal {
     public static void main(String[] args) {
-        Filme meuFilme = new Filme(); //tipo referência, cria um espaço na memória pro OBJETO screenmatch.modelos.Filme e seus atributos (caracteristicas do filme)
-        meuFilme.setNome("O poderoso chefão");
-        meuFilme.setAnoDeLancamento(1970);
+        Filme meuFilme = new Filme("O poderoso chefão", 1970); //tipo referência, cria um espaço na memória pro OBJETO screenmatch.modelos.Filme e seus atributos (caracteristicas do filme)
         meuFilme.setDuracaoEmMinutos(180);
 
         //"new screenmatch.modelos.Filme();" ==> instanciar objetos, criando uma nova referência a um objeto para trabalhar os seus dados
@@ -22,7 +22,7 @@ public class Principal {
         System.out.println(meuFilme.getTotalDeAvaliacoes());
         System.out.println(meuFilme.pegaMedia());
 
-        Serie lost = new Serie();
+        Serie lost = new Serie("lost", 2000);
         lost.setNome("lost");
         lost.setAnoDeLancamento(2000);
         lost.exibeFichaTecnica();
@@ -32,8 +32,7 @@ public class Principal {
         System.out.println("Duração para maratonar lost: " + lost.getDuracaoEmMinutos());
 
 
-        Filme outroFilme = new Filme(); //tipo referência, cria um espaço na memória pro OBJETO screenmatch.modelos.Filme e seus atributos (caracteristicas do filme)
-        outroFilme.setNome("Avatar");
+        Filme outroFilme = new Filme("Avatar", 2000); //tipo referência, cria um espaço na memória pro OBJETO screenmatch.modelos.Filme e seus atributos (caracteristicas do filme)
         outroFilme.setAnoDeLancamento(2023);
         outroFilme.setDuracaoEmMinutos(200);
         CalculadoraDeTempo calculadora = new CalculadoraDeTempo();
@@ -51,10 +50,8 @@ public class Principal {
         episodio.setTotalVisualizacoes(300);
         filtro.filtra(episodio);
 
-        var filmeDoPaulo = new Filme();
+        var filmeDoPaulo = new Filme("Dogville", 2003);
         filmeDoPaulo.setDuracaoEmMinutos(200);
-        filmeDoPaulo.setNome("Dogville");
-        filmeDoPaulo.setAnoDeLancamento(2003);
         filmeDoPaulo.avalia(10);
 
         ArrayList<Filme> listaDeFilmes = new ArrayList<>();

@@ -3,7 +3,14 @@ package screenmatch.modelos;
 // A classe é como um molde, que define quais são as características (atributos)
 // e comportamentos (métodos) que os objetos desse tipo vão possuir.
 //Classe = screenmatch.modelos.Titulo
-public class Titulo { //A CLASSE especifica o conteudo de um objeto
+public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conteudo de um objeto
+
+
+    public Titulo(String nome, int anoDeLancamento) {
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
+    }
+
     //Atributos:
     private String nome;
     private int anoDeLancamento;
@@ -71,5 +78,10 @@ public class Titulo { //A CLASSE especifica o conteudo de um objeto
     //"double" ==> Quando um método executa algo e retorna um double
     public double pegaMedia(){
         return somaDasAvaliacoes/totalDeAvaliacoes;
+    }
+
+    @Override
+    public int compareTo(Titulo outroTitulo) {
+        return this.getNome().compareTo(outroTitulo.getNome());
     }
 }
