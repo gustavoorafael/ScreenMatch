@@ -1,4 +1,9 @@
 package screenmatch.modelos;
+
+import com.google.gson.annotations.SerializedName;
+
+import javax.xml.namespace.QName;
+
 //Uma classe é uma estrutura que define um tipo de objeto.
 // A classe é como um molde, que define quais são as características (atributos)
 // e comportamentos (métodos) que os objetos desse tipo vão possuir.
@@ -19,6 +24,11 @@ public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conte
     private int totalDeAvaliacoes;
     private int duracaoEmMinutos;
 
+    public Titulo(TituloOmdb meuTituloOmdb) {
+        this.nome = meuTituloOmdb.getTitle();
+        this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.getYear());
+        this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.getRuntime().substring(0, 2));
+    }
 
 
     //Métodos
@@ -27,10 +37,12 @@ public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conte
         return totalDeAvaliacoes;
     }
 
+    @SerializedName("Title") // anotação para ver citar qual nome está vindo as informações
     public String getNome() {
         return nome;
     }
 
+    @SerializedName("Year")
     public int getAnoDeLancamento() {
         return anoDeLancamento;
     }
@@ -83,5 +95,12 @@ public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conte
     @Override
     public int compareTo(Titulo outroTitulo) {
         return this.getNome().compareTo(outroTitulo.getNome());
+    }
+
+    @Override
+    public String toString() {
+        return  "nome='" + nome + '\''
+                + ", anoDeLancamento = " + anoDeLancamento
+                + ", duração em minutos = " + duracaoEmMinutos;
     }
 }
