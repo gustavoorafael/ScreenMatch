@@ -1,6 +1,7 @@
 package screenmatch.modelos;
 
 import com.google.gson.annotations.SerializedName;
+import screenmatch.exception.ErroDeConversaoDeAnoException;
 
 import javax.xml.namespace.QName;
 
@@ -9,7 +10,6 @@ import javax.xml.namespace.QName;
 // e comportamentos (métodos) que os objetos desse tipo vão possuir.
 //Classe = screenmatch.modelos.Titulo
 public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conteudo de um objeto
-
 
     public Titulo(String nome, int anoDeLancamento) {
         this.nome = nome;
@@ -26,10 +26,12 @@ public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conte
 
     public Titulo(TituloOmdb meuTituloOmdb) {
         this.nome = meuTituloOmdb.getTitle();
+        if(meuTituloOmdb.getYear().length() > 4) {
+            throw new ErroDeConversaoDeAnoException("Não consegui converter o ano, pois há mais de 4 caracteres");
+        }
         this.anoDeLancamento = Integer.valueOf(meuTituloOmdb.getYear());
         this.duracaoEmMinutos = Integer.valueOf(meuTituloOmdb.getRuntime().substring(0, 2));
     }
-
 
     //Métodos
     //esperamos receber um inteiro, get quando queremos pegar um valor, assim como usa set quando queremos atribuir um valor. (getters e setters)
@@ -99,8 +101,8 @@ public class Titulo implements Comparable<Titulo>{ //A CLASSE especifica o conte
 
     @Override
     public String toString() {
-        return  "nome='" + nome + '\''
+        return  "(nome ='" + nome
                 + ", anoDeLancamento = " + anoDeLancamento
-                + ", duração em minutos = " + duracaoEmMinutos;
+                + ", duração em minutos = " + duracaoEmMinutos + ")";
     }
 }
